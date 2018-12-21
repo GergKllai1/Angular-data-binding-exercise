@@ -11,7 +11,8 @@ import {
   AfterViewChecked,
   OnDestroy,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ContentChild
 } from '@angular/core';
 import { headersToString } from 'selenium-webdriver/http';
 
@@ -33,6 +34,7 @@ OnDestroy{
   @Input('serverElement') element: {type: string, name: string, content: string};
   @Input() name: string;
   @ViewChild('heading') header: ElementRef;
+  @ContentChild('paragraphContent') paragraph: ElementRef;
   constructor() { 
     console.log('constructor called!');
   }
@@ -45,6 +47,8 @@ OnDestroy{
   ngOnInit() { 
     console.log('ngOnInit called!');
     console.log('Text content ' + this.header.nativeElement.textContent)
+    console.log('Text content ' + this.paragraph.nativeElement.textContent)
+
   }
   
   ngDoCheck() {
@@ -62,7 +66,7 @@ OnDestroy{
   ngAfterViewInit() {
     console.log('ngAfterViewInit called!')
     console.log('Text content ' + this.header.nativeElement.textContent)
-
+    console.log('Text content ' + this.paragraph.nativeElement.textContent)
   }
 
   ngAfterViewChecked() {
